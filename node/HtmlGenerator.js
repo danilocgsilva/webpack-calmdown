@@ -1,5 +1,5 @@
 import fs from 'fs'
-import getScriptPath from './getScriptPath.js'
+import Utils from './Utils.js'
 
 export default class HtmlGenerator {
 
@@ -11,9 +11,17 @@ export default class HtmlGenerator {
         this._title = titleString
     }
 
+    get fileName() {
+        return "index.html"
+    }
+
+    get description() {
+        return "A raw html file has been created."
+    }
+
     generate() {
-        const head = fs.readFileSync(`${getScriptPath()}/../assets/index.html/head.txt`)
-        const tail = fs.readFileSync(`${getScriptPath()}/../assets/index.html/tail.txt`)
+        const head = fs.readFileSync(`${Utils.getScriptPath()}/../assets/index.html/head.txt`)
+        const tail = fs.readFileSync(`${Utils.getScriptPath()}/../assets/index.html/tail.txt`)
 
         const htmlTitle = this._title == null ? "Document" : this._title
 
