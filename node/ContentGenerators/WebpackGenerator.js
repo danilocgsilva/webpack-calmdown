@@ -13,4 +13,8 @@ export default class WebpackGenerator {
     get description() {
         return "A basic webpack.config.js file."
     }
+
+    get prefix() {
+        return "";
+    }
 }

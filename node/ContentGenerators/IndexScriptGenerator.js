@@ -13,4 +13,8 @@ export default class IndexScriptGenerator {
     get description() {
         return "The production script goes here!"
     }
+
+    get prefix() {
+        return "src";
+    }
 }

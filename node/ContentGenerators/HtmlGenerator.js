@@ -19,6 +19,10 @@ export default class HtmlGenerator {
         return "A raw html file has been created."
     }
 
+    get prefix() {
+        return "";
+    }
+
     generate() {
         const head = fs.readFileSync(`${Utils.getScriptPath()}/../assets/index.html/head.txt`)
         const tail = fs.readFileSync(`${Utils.getScriptPath()}/../assets/index.html/tail.txt`)

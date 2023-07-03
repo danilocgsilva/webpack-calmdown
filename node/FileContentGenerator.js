@@ -1,5 +1,6 @@
 import fs from 'fs'
 import Utils from './Utils.js'
+import path from "path"
 
 export default class FileContentGenerator {
 
@@ -25,7 +26,7 @@ export default class FileContentGenerator {
     }
 
     resolvePath(prefixPath) {
-        const folderPathToSave = Utils.getScriptPath() + "/../output/" + prefixPath
+        const folderPathToSave = path.resolve(Utils.getScriptPath(), "..", "output", prefixPath, this.generator.prefix)
         const cleanedFolderPathToSave = folderPathToSave.replace(/node\/\.\.\//, "")
         if (!fs.existsSync([cleanedFolderPathToSave])) {
             fs.mkdirSync(cleanedFolderPathToSave, { recursive: true });
