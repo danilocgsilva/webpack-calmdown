@@ -13,11 +13,13 @@ export default class Utils {
 
         const fullYear = date.getFullYear()
         const month = ('0' + (date.getMonth() + 1)).slice(-2)
-        const day = date.getDate()
-        const hour = date.getHours()
+        const day =  ('0' + (date.getDate())).slice(-2)
+        const hour = ('0' + (date.getHours())).slice(-2) 
         const minutes = date.getMinutes()
         const seconds = ('0' + (date.getSeconds())).slice(-2)
 
-        return `${fullYear}${month}${day}-${hour}${minutes}${seconds}`
+        const stringToReturn = `${fullYear}${month}${day}-${hour}${minutes}${seconds}`
+
+        return stringToReturn
     }
 }

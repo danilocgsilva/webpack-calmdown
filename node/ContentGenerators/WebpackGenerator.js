@@ -1,8 +1,7 @@
-import Utils from "./Utils.js"
+import Utils from "../Utils.js"
 import fs from 'fs'
 
-export default class WebpackGenerator
-{
+export default class WebpackGenerator {
     generate() {
         return fs.readFileSync(`${Utils.getScriptPath()}/../assets/webpack.config.js/full.txt`)
     }
