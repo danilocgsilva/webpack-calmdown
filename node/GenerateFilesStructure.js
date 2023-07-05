@@ -4,14 +4,21 @@ import WebpackGenerator from './ContentGenerators/WebpackGenerator.js'
 import IndexScriptGenerator from "./ContentGenerators/IndexScriptGenerator.js"
 import PackageJsonContent from "./ContentGenerators/PackageJsonContent.js"
 import Utils from "./Utils.js"
+import path from "path"
 
 export default class GenerateFilesStructure {
     writeFileStructure(directoryOffset = "") {
         
-        const directoryTarget =
-            directoryOffset == "" ? 
-            Utils.getTimeString() : 
-            directoryOffset + "/" + Utils.getTimeString()
+        // const directoryTarget =
+        //     directoryOffset == "" ? 
+        //     Utils.getTimeString() : 
+        //     directoryOffset + "/" + Utils.getTimeString()
+
+        let directoryTarget = path.resolve(directoryOffset, Utils.getTimeString())
+
+        directoryTarget = directoryTarget.replace(/node\//, "output/")
+
+        console.log("10-- " + directoryTarget + " --10")
 
         const htmlGenerator = new FileContentGenerator(new HtmlGenerator())
         const webpackGenerator = new FileContentGenerator(new WebpackGenerator())

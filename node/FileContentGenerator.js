@@ -8,10 +8,10 @@ export default class FileContentGenerator {
         this.generator = generator
         this.currentTime = Utils.getTimeString()
     }
-    
+
     writeFile(prefix) {
         this.generator.prefixPath = prefix
-        
+
         const fullFilePathAndName = this.resolvePath(prefix)
 
         fs.writeFile(fullFilePathAndName, this.generator.generate(), err => {
@@ -21,7 +21,7 @@ export default class FileContentGenerator {
             console.log("The file was saved: " + fullFilePathAndName);
             console.log(this.generator.description)
             console.log("---")
-        }); 
+        });
     }
 
     set title(documentTitle) {
@@ -30,32 +30,23 @@ export default class FileContentGenerator {
 
     resolvePath(prefixPath) {
 
-        console.log("7--" + prefixPath + "--7")
-        
         const countPathParts = prefixPath.split("/").length
 
         const rootScriptPath = Utils.getScriptPath(
-            process, 
+            process,
             this.prefixPath
         )
-        let folderPathToSave
-        if (countPathParts == 1) {
-            folderPathToSave = path.resolve(
-                rootScriptPath, 
-                "..", 
-                "output", 
-                prefixPath, 
-                this.generator.prefix
-            )
-        } else {
-            folderPathToSave = path.resolve(
-                rootScriptPath, 
-                "output", 
-                "output", 
-                prefixPath, 
-                this.generator.prefix
-            ) 
-        }
+
+        console.log("9--" + rootScriptPath + "--9")
+
+        const folderPathToSave = path.resolve(
+            rootScriptPath,
+            "output",
+            prefixPath,
+            this.generator.prefix
+        )
+
+        console.log("8--" + folderPathToSave + "--8")
 
         if (!fs.existsSync([folderPathToSave])) {
             fs.mkdirSync(folderPathToSave, { recursive: true });

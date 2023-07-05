@@ -9,6 +9,10 @@ export default class HtmlGenerator extends GeneratorAbstract {
         this._title = null
     }
 
+    set documentTitle(documentTitle) {
+        this._title = documentTitle
+    }
+
     get fileName() {
         return "index.html"
     }
@@ -24,12 +28,14 @@ export default class HtmlGenerator extends GeneratorAbstract {
     generate() {
         const assetsNavigation = this.suffixPath
 
-        const head = fs.readFileSync(`${Utils.getScriptPath(process)}/${assetsNavigation}assets/index.html/head.txt`)
-        const tail = fs.readFileSync(`${Utils.getScriptPath(process)}/${assetsNavigation}assets/index.html/tail.txt`)
+        const headBuffer = fs.readFileSync(`${Utils.getScriptPath(process)}/${assetsNavigation}assets/index.html/head.txt`)
+        const tailBuffer = fs.readFileSync(`${Utils.getScriptPath(process)}/${assetsNavigation}assets/index.html/tail.txt`)
+        const head = headBuffer.toString()
+        const tail = tailBuffer.toString()
 
         const htmlTitle = this._title == null ? "Document" : this._title
 
-        const readValued = head.toString().replace(
+        const readValued = head.replace(
             /{documentTitle}/g,
             htmlTitle
         )

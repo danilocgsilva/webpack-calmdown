@@ -1,3 +1,3 @@
 #!/bin/bash
 
-node node/index.js ".."
+node node/index.js "node"

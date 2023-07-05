@@ -6,8 +6,8 @@ export default class WebpackGenerator extends GeneratorAbstract {
 
     generate() {
         const assetsNavigation = this.suffixPath
-
-        return fs.readFileSync(`${Utils.getScriptPath(process, this._scriptPath)}/${assetsNavigation}assets/webpack.config.js/full.txt`)
+        const fileBuffer = fs.readFileSync(`${Utils.getScriptPath(process, this._scriptPath)}/${assetsNavigation}assets/webpack.config.js/full.txt`)
+        return fileBuffer.toString()
     }
 
     get fileName() {

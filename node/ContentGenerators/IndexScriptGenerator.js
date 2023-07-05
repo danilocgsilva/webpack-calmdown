@@ -6,8 +6,8 @@ export default class IndexScriptGenerator extends GeneratorAbstract  {
 
     generate() {
         const assetsNavigation = this.suffixPath
-
-        return fs.readFileSync(`${Utils.getScriptPath(process, this._scriptPath)}/${assetsNavigation}assets/script.js/full.txt`)
+        const fileBuffer = fs.readFileSync(`${Utils.getScriptPath(process, this._scriptPath)}/${assetsNavigation}assets/script.js/full.txt`)
+        return fileBuffer.toString()
     }
 
     get fileName() {
