@@ -10,6 +10,9 @@ export default class FileContentGenerator {
     }
 
     writeFile(prefix) {
+
+        console.log("3-- " + prefix + " --3")
+        
         this.generator.prefixPath = prefix
 
         const fullFilePathAndName = this.resolvePath(prefix)
@@ -34,10 +37,8 @@ export default class FileContentGenerator {
 
         const rootScriptPath = Utils.getScriptPath(
             process,
-            this.prefixPath
+            prefixPath
         )
-
-        console.log("9--" + rootScriptPath + "--9")
 
         const folderPathToSave = path.resolve(
             rootScriptPath,
@@ -45,8 +46,6 @@ export default class FileContentGenerator {
             prefixPath,
             this.generator.prefix
         )
-
-        console.log("8--" + folderPathToSave + "--8")
 
         if (!fs.existsSync([folderPathToSave])) {
             fs.mkdirSync(folderPathToSave, { recursive: true });

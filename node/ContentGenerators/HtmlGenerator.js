@@ -1,5 +1,3 @@
-import fs from 'fs'
-import Utils from '../Utils.js'
 import GeneratorAbstract from './GeneratorAbstract.js'
 
 export default class HtmlGenerator extends GeneratorAbstract {
@@ -26,12 +24,10 @@ export default class HtmlGenerator extends GeneratorAbstract {
     }
 
     generate() {
-        const assetsNavigation = this.suffixPath
-
-        const headBuffer = fs.readFileSync(`${Utils.getScriptPath(process)}/${assetsNavigation}assets/index.html/head.txt`)
-        const tailBuffer = fs.readFileSync(`${Utils.getScriptPath(process)}/${assetsNavigation}assets/index.html/tail.txt`)
-        const head = headBuffer.toString()
-        const tail = tailBuffer.toString()
+        const resultsPieces = this.generateGeneric("index.html", ["head.txt", "tail.txt"])
+        
+        const head = resultsPieces[0]
+        const tail = resultsPieces[1]
 
         const htmlTitle = this._title == null ? "Document" : this._title
 

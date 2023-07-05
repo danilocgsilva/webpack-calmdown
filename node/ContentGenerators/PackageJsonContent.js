@@ -5,9 +5,8 @@ import GeneratorAbstract from './GeneratorAbstract.js'
 export default class PackageJsonContent extends GeneratorAbstract  {
 
     generate() {
-        const assetsNavigation = this.suffixPath
-        const fileBuffer = fs.readFileSync(`${Utils.getScriptPath(process, this._scriptPath)}/${assetsNavigation}assets/package.json/full.txt`)
-        return fileBuffer.toString()
+        const filePieces = this.generateGeneric("package.json", ["full.txt"])
+        return filePieces[0]
     }
 
     get fileName() {
