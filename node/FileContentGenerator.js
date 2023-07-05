@@ -6,11 +6,14 @@ export default class FileContentGenerator {
 
     constructor(generator) {
         this.generator = generator
+        this.currentTime = Utils.getTimeString()
     }
     
     writeFile(prefix) {
-        const fullFilePathAndName = this.resolvePath(prefix)
+        this.generator.prefixPath = prefix
         
+        const fullFilePathAndName = this.resolvePath(prefix)
+
         fs.writeFile(fullFilePathAndName, this.generator.generate(), err => {
             if (err) {
                 return console.log(err);
@@ -26,11 +29,37 @@ export default class FileContentGenerator {
     }
 
     resolvePath(prefixPath) {
-        const folderPathToSave = path.resolve(Utils.getScriptPath(), "..", "output", prefixPath, this.generator.prefix)
-        const cleanedFolderPathToSave = folderPathToSave.replace(/node\/\.\.\//, "")
-        if (!fs.existsSync([cleanedFolderPathToSave])) {
-            fs.mkdirSync(cleanedFolderPathToSave, { recursive: true });
+
+        console.log("7--" + prefixPath + "--7")
+        
+        const countPathParts = prefixPath.split("/").length
+
+        const rootScriptPath = Utils.getScriptPath(
+            process, 
+            this.prefixPath
+        )
+        let folderPathToSave
+        if (countPathParts == 1) {
+            folderPathToSave = path.resolve(
+                rootScriptPath, 
+                "..", 
+                "output", 
+                prefixPath, 
+                this.generator.prefix
+            )
+        } else {
+            folderPathToSave = path.resolve(
+                rootScriptPath, 
+                "output", 
+                "output", 
+                prefixPath, 
+                this.generator.prefix
+            ) 
         }
-        return cleanedFolderPathToSave + "/" + this.generator.fileName
+
+        if (!fs.existsSync([folderPathToSave])) {
+            fs.mkdirSync(folderPathToSave, { recursive: true });
+        }
+        return folderPathToSave + "/" + this.generator.fileName
     }
 }

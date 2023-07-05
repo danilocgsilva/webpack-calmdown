@@ -1,9 +1,13 @@
 import Utils from "../Utils.js"
 import fs from 'fs'
+import GeneratorAbstract from './GeneratorAbstract.js'
 
-export default class PackageJsonContent {
+export default class PackageJsonContent extends GeneratorAbstract  {
+
     generate() {
-        return fs.readFileSync(`${Utils.getScriptPath()}/../assets/package.json/full.txt`)
+        const assetsNavigation = this.suffixPath
+
+        return fs.readFileSync(`${Utils.getScriptPath(process, this._scriptPath)}/${assetsNavigation}assets/package.json/full.txt`)
     }
 
     get fileName() {

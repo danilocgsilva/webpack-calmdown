@@ -1,14 +1,12 @@
 import fs from 'fs'
 import Utils from '../Utils.js'
+import GeneratorAbstract from './GeneratorAbstract.js'
 
-export default class HtmlGenerator {
+export default class HtmlGenerator extends GeneratorAbstract {
 
     constructor() {
+        super()
         this._title = null
-    }
-
-    set title(titleString) {
-        this._title = titleString
     }
 
     get fileName() {
@@ -24,8 +22,10 @@ export default class HtmlGenerator {
     }
 
     generate() {
-        const head = fs.readFileSync(`${Utils.getScriptPath()}/../assets/index.html/head.txt`)
-        const tail = fs.readFileSync(`${Utils.getScriptPath()}/../assets/index.html/tail.txt`)
+        const assetsNavigation = this.suffixPath
+
+        const head = fs.readFileSync(`${Utils.getScriptPath(process)}/${assetsNavigation}assets/index.html/head.txt`)
+        const tail = fs.readFileSync(`${Utils.getScriptPath(process)}/${assetsNavigation}assets/index.html/tail.txt`)
 
         const htmlTitle = this._title == null ? "Document" : this._title
 

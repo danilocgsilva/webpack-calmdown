@@ -3,5 +3,5 @@ import GenerateFilesStructure from "./GenerateFilesStructure.js"
 
 const folderPrefix = Utils.getTimeString()
 
-const fileStructureGenerator = new GenerateFilesStructure(folderPrefix)
-fileStructureGenerator.writeFileStructure()
+const fileStructureGenerator = new GenerateFilesStructure()
+fileStructureGenerator.writeFileStructure(process.argv[2])

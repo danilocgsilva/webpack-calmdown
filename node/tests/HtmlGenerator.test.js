@@ -5,15 +5,22 @@ describe('HtmlGenerator', () => {
 
         const htmlGenerator = new HtmlGenerator()
 
-        const expectContent = `version: "3.5"
+        const expectedContent = `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="script.js"></script>
+</head>
+<body>
+    
+    <h1>Document</h1>
 
-services:
-  debian:
-    container_name: debian
-    build:
-      context: .
-`
+</body>
+</html>`
 
-        expect(debianContent.generate()).toEqual(expectContent)
+        expect(htmlGenerator.generate()).toEqual(expectedContent)
     })
 })
