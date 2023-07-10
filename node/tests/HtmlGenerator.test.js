@@ -14,7 +14,7 @@ describe('HtmlGenerator', () => {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js"></script>
+    <script src="dist/js/script.js"></script>
 </head>
 <body>
     
@@ -36,7 +36,7 @@ describe('HtmlGenerator', () => {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Document Title</title>
-    <script src="script.js"></script>
+    <script src="dist/js/script.js"></script>
 </head>
 <body>
     
