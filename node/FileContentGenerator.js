@@ -11,8 +11,6 @@ export default class FileContentGenerator {
 
     writeFile(prefix) {
 
-        console.log("3-- " + prefix + " --3")
-        
         this.generator.prefixPath = prefix
 
         const fullFilePathAndName = this.resolvePath(prefix)
